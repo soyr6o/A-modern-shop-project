@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shop/future/shop/page/botton/botton.dart';
 import 'package:shop/future/shop/page/sign/stream.dart';
 
 class Welcome extends StatefulWidget {
@@ -123,7 +124,7 @@ class _WelcomeState extends State<Welcome> {
                                 ),
                                 child: Center(child: InkWell(
                                     onTap: (){
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>StreamPage()));
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> BottonPage()));
                                     },
                                     child: Text("WELCOME",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),))),
                               ),

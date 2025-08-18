@@ -12,7 +12,6 @@ class Sign extends StatefulWidget {
 class _SignState extends State<Sign> {
   final _email = TextEditingController();
   final _password = TextEditingController();
-  bool _obscureText = true;
   final authSupabase= AuthSupabase();
   final _confirmpassword= TextEditingController();
   void login() async{
@@ -53,8 +52,6 @@ class _SignState extends State<Sign> {
   }
   @override
   Widget build(BuildContext context) {
-    double h= MediaQuery.of(context).size.height;
-    double w=MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: SafeArea(child:
