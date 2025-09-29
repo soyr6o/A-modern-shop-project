@@ -1,4 +1,4 @@
-# shop
+# appwrite2
 
 A new Flutter project.
 
