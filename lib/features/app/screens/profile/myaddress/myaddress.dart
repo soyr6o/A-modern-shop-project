@@ -181,14 +181,12 @@ class MyAddress extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 10,top: 10),
-                          child: Expanded(
-                            child: Text(
-                              "Phone: ${addressData["phoneNumber"]}",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
+                          child: Text(
+                            "Phone: ${addressData["phoneNumber"]}",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
                             ),
                           ),
                         ),

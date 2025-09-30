@@ -1,6 +1,7 @@
 import 'package:appwrite2/appwrite.dart';
 import 'package:appwrite2/data/repositories/authentication_repositories.dart';
 import 'package:appwrite2/features/app/screens/home/widget/bottomcurvedclipper.dart';
+import 'package:appwrite2/features/app/screens/note/note.dart';
 import 'package:appwrite2/features/app/screens/profile/editprofile/editprofile.dart';
 import 'package:appwrite2/features/app/screens/profile/myaddress/myaddress.dart';
 import 'package:appwrite2/features/app/screens/profile/mycart/mycart.dart';
@@ -141,6 +142,16 @@ class ProfileScreen extends StatelessWidget {
                     title: Text("My Orders",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                     subtitle: Text("In-progress and Completed Orders"),
                   ),
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Note()));
+                    },
+                    child: ListTile(
+                      leading: Icon(Iconsax.note_text),
+                      title: Text("Note",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                      subtitle: Text("Add, remove note"),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 30,right: 30,top: 18),
                     child: SizedBox(
@@ -152,7 +163,7 @@ class ProfileScreen extends StatelessWidget {
                           MFullScreenLoader.stopLoading();
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreens()));
                         }, child: Text("Logout"))),
-                  )
+                  ),
                 ],
               ),
             ),

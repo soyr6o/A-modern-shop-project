@@ -11,6 +11,10 @@ class MImage{
   static const String loadingAnimation3 = 'assets/animations/loadingaddtocard.json';
   static const String loadingAnimation4 = 'assets/animations/loadingdelivery.json';
   static const String loadingAnimation5 = 'assets/animations/loadfingaddress.json';
+  static const String background1 = 'assets/animations/Background_shooting_star.json';
+  static const String background2 = 'assets/animations/BackgroundFullScreen-Night.json';
+  static const String background3 = 'assets/animations/BackgroundFullScreen-Train.json';
+  static const String background4 = 'assets/animations/BackgroundFullScreenlight.json';
   static const String noData1 = 'assets/animations/No-Data.json';
   static const String noData2 = 'assets/animations/empty.json';
 

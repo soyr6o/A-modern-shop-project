@@ -319,8 +319,7 @@ class _HeaderHomeState extends State<HeaderHome> {
         ),
         SizedBox(
           height: 140,
-          child: Expanded(
-            child: ListView.builder(
+          child: ListView.builder(
               itemCount: _results.length,
               itemBuilder: (context, index) {
                 final product = _results[index];
@@ -418,7 +417,6 @@ class _HeaderHomeState extends State<HeaderHome> {
                 );
               },
             ),
-          ),
         )
       ],
     );
