@@ -9,6 +9,7 @@ import 'package:appwrite2/features/app/screens/srote/widget/search_widget.dart';
 import 'package:appwrite2/features/authentication/controllers/cartitem/cert_item_controller.dart';
 import 'package:appwrite2/utils/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
@@ -27,7 +28,7 @@ class _StoreScreenState extends State<StoreScreen> {
   final TextEditingController _controller = TextEditingController();
 
 
-  final String bucketId = '68ad372a00284ca04cb2';
+  final String bucketId = MKeys.bucketProducts;
 
   @override
   void initState() {

@@ -8,6 +8,7 @@ import 'package:appwrite2/features/authentication/models/user_model.dart';
 import 'package:appwrite2/utils/popups/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserController extends GetxController{
@@ -97,7 +98,7 @@ class UserController extends GetxController{
 
     final userId = await FetchUser().getUserId();
     final fileId = "profile_$userId";
-    final bucketId = "68ad372a00284ca04cb2";
+    final bucketId = MKeys.bucketProducts;
 
     try {
       await _storage.getFile(bucketId: bucketId, fileId: fileId);
@@ -128,7 +129,7 @@ class UserController extends GetxController{
   Future<ImageProvider> getProfileImage() async{
     final userId = await FetchUser().getUserId();
     final fileId = "profile_$userId";
-    final bucketId = "68ad372a00284ca04cb2";
+    final bucketId = MKeys.bucketProducts;
     final bytes = await _storage.getFileView(bucketId: bucketId, fileId: fileId);
     return MemoryImage(bytes);
   }
@@ -139,8 +140,8 @@ class UserController extends GetxController{
       final user = await db.account.get();
       final userId = user.$id;
       final response = await db.tables.listRows(
-        databaseId: '68c666740018d3cc0eeb',
-        tableId: 'user',
+        databaseId: MKeys.databaseIdUser,
+        tableId: MKeys.tableUser,
         queries: [
           Query.equal('userId', userId)
         ],

@@ -6,6 +6,7 @@ import 'package:appwrite2/features/button/button_savep.dart';
 import 'package:appwrite2/features/button/button_saveproduct.dart';
 import 'package:appwrite2/utils/constants/color.dart';
 import 'package:appwrite2/utils/constants/images.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -30,7 +31,7 @@ class _SeeProductState extends State<SeeProduct> {
   }
   final appwrite = Get.find<AppwriteService>();
   Future<Uint8List?> getImage(String fileId) async{
-    final result = await appwrite.storage.getFileView(bucketId: "68ad372a00284ca04cb2", fileId: fileId);
+    final result = await appwrite.storage.getFileView(bucketId: MKeys.bucketProducts, fileId: fileId);
     return result;
   }
   Future<List<Uint8List?>> getMultiImages(List<String> fileIds) async {

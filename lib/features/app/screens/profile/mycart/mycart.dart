@@ -9,6 +9,7 @@ import 'package:appwrite2/utils/constants/color.dart';
 import 'package:appwrite2/utils/constants/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 
@@ -20,9 +21,9 @@ class MyCartProduct extends StatefulWidget {
 }
 
 class _MyCartProductState extends State<MyCartProduct> {
-  final String databaseId = "68af28ac0026a60aa9db";
-  final String cartTableId = "cart_items";
-  final String bucketId = "68ad372a00284ca04cb2";
+  final String databaseId = MKeys.databaseIdProducts;
+  final String cartTableId = MKeys.tableCartItems;
+  final String bucketId = MKeys.bucketProducts;
 
   final future = CartItem();
   late Future<List<Map<String, dynamic>>> _cartFuture;
@@ -34,7 +35,7 @@ class _MyCartProductState extends State<MyCartProduct> {
   Future<Uint8List> getImage(String fileId) async {
     final appwrite = Get.find<AppwriteService>();
     final bytes = await appwrite.storage.getFileView(
-      bucketId: "68ad372a00284ca04cb2",
+      bucketId: bucketId,
       fileId: fileId,
     );
     return bytes;

@@ -1,6 +1,8 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:appwrite2/features/app/screens/note/model_note.dart';
+import 'package:appwrite2/features/app/screens/note/page/see_note.dart';
+import 'package:appwrite2/features/button/buttomnavigation.dart';
 import 'package:appwrite2/utils/constants/color.dart';
 import 'package:appwrite2/utils/constants/images.dart';
 import 'package:appwrite2/utils/popups/loader.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 class Note extends StatefulWidget {
   const Note({super.key});
@@ -27,8 +30,8 @@ class _NoteState extends State<Note> {
     descriptionController.dispose();
   }
   final appwrite = Get.find<AppwriteService>();
-  final databaseId = "68c666740018d3cc0eeb";
-  final tableId = "note";
+  final databaseId = MKeys.databaseIdNotes;
+  final tableId = MKeys.tableNotes;
   Future<void> uploadNote() async{
     final user = await appwrite.account.get();
     final userId = user.$id;
@@ -43,7 +46,7 @@ class _NoteState extends State<Note> {
     final user = await appwrite.account.get();
     final userId = user.$id;
     final result = await appwrite.tables.listRows(databaseId: databaseId, tableId: tableId,queries: [Query.equal("userId", userId)]);
-    return result.rows.map((row)=>NoteData.fromMap(row.data)).toList();
+    return result.rows.map((row)=>NoteData.fromMap(row.data, $id: row.$id)).toList();
   }
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,9 @@ class _NoteState extends State<Note> {
       appBar: AppBar(
         backgroundColor: Theme.brightnessOf(context)== Brightness.dark ? Colors.grey.shade900 : Colors.red.shade100,
         title: Text("N O T E  B O O K"),
+        leading: IconButton(onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> BottomNavigation()));
+        }, icon: Icon(Icons.arrow_back)),
       ),
       floatingActionButton: FloatingActionButton.extended(onPressed: (){
         showDialog<void>(
@@ -84,6 +90,9 @@ class _NoteState extends State<Note> {
                 ),
               ),
               actions: [
+                TextButton(onPressed: (){
+                  Navigator.of(dialogContext).pop();
+                }, child: Text("cancel",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),)),
                 TextButton(
                   child: Text('buttonText',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),),
                   onPressed: () async {
@@ -91,7 +100,7 @@ class _NoteState extends State<Note> {
                     await uploadNote();
                     titleController.clear();
                     descriptionController.clear();
-                    await getNote();
+                    setState(() {});
                     MFullScreenLoader.stopLoading();
                     Navigator.of(dialogContext).pop(); // Dismiss alert dialog
                   },
@@ -129,36 +138,41 @@ class _NoteState extends State<Note> {
               final datas = snapshot.data ?? [];
               return ListView.builder(itemCount: datas.length, itemBuilder: (context,index){
                 final data = datas[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: SizedBox(
-                    height: 88,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Positioned.fill(
-                              child: RepaintBoundary(
-                                child: Theme.of(context).brightness == Brightness.dark ? Lottie.asset(
-                                  MImage.background1,
-                                  fit: BoxFit.cover,
-                                ) : Lottie.asset(
-                                  MImage.background4,
-                                  fit: BoxFit.cover,
+                return InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SeeNote(rowId: data.$id!)));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: SizedBox(
+                      height: 88,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Positioned.fill(
+                                child: RepaintBoundary(
+                                  child: Theme.of(context).brightness == Brightness.dark ? Lottie.asset(
+                                    MImage.background1,
+                                    fit: BoxFit.cover,
+                                  ) : Lottie.asset(
+                                    MImage.background4,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                          ),
-                          Material(
-                            color: Colors.transparent,
-                            child: ListTile(
-                              title: Text("${data.title}"),
-                              subtitle: Text("${data.description}"),
-                              tileColor: Colors.transparent,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                             ),
-                          ),
-                        ],
+                            Material(
+                              color: Colors.transparent,
+                              child: ListTile(
+                                title: Text("${data.title}"),
+                                subtitle: Text("${data.description}"),
+                                tileColor: Colors.transparent,
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 class FetchAddress{
   Future<String> getUserId() async{
@@ -16,8 +17,8 @@ class FetchAddress{
       final _tables = Get.find<AppwriteService>().tables;
 
       final result = await _tables.listRows(
-          databaseId: "68c666740018d3cc0eeb",
-          tableId: "address",
+          databaseId: MKeys.databaseIdUser,
+          tableId: MKeys.tableAddress,
           queries: [Query.equal("userId", userId)],
       );
 
@@ -30,10 +31,10 @@ class FetchAddress{
 
   Future<void> updateAddress(String rowId,Map<String, dynamic> newData,) async{
     final _tables = Get.find<AppwriteService>().tables;
-    await _tables.updateRow(databaseId: "68c666740018d3cc0eeb", tableId: "address", rowId: rowId,data: newData);
+    await _tables.updateRow(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableAddress, rowId: rowId,data: newData);
   }
   Future<void> deleteUserAddress(String rowId) async{
     final _tables = Get.find<AppwriteService>().tables;
-    await _tables.deleteRow(databaseId: "68c666740018d3cc0eeb", tableId: "address", rowId: rowId);
+    await _tables.deleteRow(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableAddress, rowId: rowId);
   }
 }

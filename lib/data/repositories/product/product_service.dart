@@ -3,12 +3,13 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:appwrite2/data/repositories/product/model_product.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 
 class ProductService{
-  static final databaseId="68af28ac0026a60aa9db";
-  static final tableId ="products";
-  static final bucketId="68ad372a00284ca04cb2";
+  static final databaseId=MKeys.databaseIdProducts;
+  static final tableId =MKeys.tableProducts;
+  static final bucketId=MKeys.bucketProducts;
 
 
   static Future<ProductsData> creatProduct(String userId,ProductsData data) async{

@@ -2,10 +2,11 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 class GetCategories{
 
-  final databaseId = "68af28ac0026a60aa9db";
+  final databaseId = MKeys.databaseIdProducts;
   final tableId = "categories";
   final appwrite = Get.find<AppwriteService>();
   Future<List<Map<String, dynamic>>> getProductsByCategory(String categoryId) async {
@@ -21,7 +22,7 @@ class GetCategories{
   }
   Future<List<Map<String, dynamic>>> getSport() async {
     final categoriesResult = await appwrite.tables.listRows(
-      databaseId: "YOUR_DB",
+      databaseId: databaseId,
       tableId: "categories",
       queries: [Query.equal("name", "sports")],
     );
@@ -39,7 +40,7 @@ class GetCategories{
 
   Future<List<Map<String, dynamic>>> getFurniture() async {
     final categoriesResult = await appwrite.tables.listRows(
-      databaseId: "YOUR_DB",
+      databaseId: databaseId,
       tableId: "categories",
       queries: [Query.equal("name", "furniture")],
     );
@@ -56,7 +57,7 @@ class GetCategories{
   }
   Future<List<Map<String, dynamic>>> getElectronics() async {
     final categoriesResult = await appwrite.tables.listRows(
-      databaseId: "YOUR_DB",
+      databaseId: databaseId,
       tableId: "categories",
       queries: [Query.equal("name", "electronics")],
     );
@@ -73,7 +74,7 @@ class GetCategories{
   }
   Future<List<Map<String, dynamic>>> getClothes() async {
     final categoriesResult = await appwrite.tables.listRows(
-      databaseId: "YOUR_DB",
+      databaseId: databaseId,
       tableId: "categories",
       queries: [Query.equal("name", "clothes")],
     );
@@ -91,7 +92,7 @@ class GetCategories{
 
   Future<List<Map<String, dynamic>>> getShoes() async {
     final categoriesResult = await appwrite.tables.listRows(
-      databaseId: "YOUR_DB",
+      databaseId: databaseId,
       tableId: "categories",
       queries: [Query.equal("name", "shoes")],
     );

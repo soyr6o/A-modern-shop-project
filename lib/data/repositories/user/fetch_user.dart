@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class FetchUser{
@@ -14,7 +15,7 @@ class FetchUser{
   Future<Map<String, dynamic>?> getUserData(String userId) async{
     try{
       final _tables = Get.find<AppwriteService>().tables;
-      final result = await _tables.listRows(databaseId: "68c666740018d3cc0eeb", tableId: "user",queries: [Query.equal("userId", userId)]);
+      final result = await _tables.listRows(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableUser,queries: [Query.equal("userId", userId)]);
       if (result.rows.isNotEmpty) {
         return result.rows.first.data;
       }

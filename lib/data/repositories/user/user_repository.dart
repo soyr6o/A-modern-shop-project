@@ -7,6 +7,7 @@ import 'package:appwrite2/utils/exceptions/appwrite_auth.dart';
 import 'package:appwrite2/utils/exceptions/platform_exceptions.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 class UserRepository extends GetxController{
   static UserRepository get instance => Get.find();
@@ -18,7 +19,7 @@ class UserRepository extends GetxController{
     try{
 
 
-      await _table.createRow(databaseId: MKeys.documentIdUser, tableId: MKeys.tableUser, rowId: ID.unique(), data: user.toMap());
+      await _table.createRow(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableUser, rowId: ID.unique(), data: user.toMap());
 
 
     }on AppwriteException catch(e){
@@ -37,7 +38,7 @@ class UserRepository extends GetxController{
 
     try{
 
-      await _table.createRow(databaseId: "68c666740018d3cc0eeb", tableId: "address", rowId: ID.unique(), data: user.toMap());
+      await _table.createRow(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableAddress, rowId: ID.unique(), data: user.toMap());
 
     }on AppwriteException catch(e){
       print("AppwriteException occurred: ${e.code} - ${e.message}");

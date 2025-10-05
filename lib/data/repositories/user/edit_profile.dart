@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite2/appwrite.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class EditProfileData{
@@ -11,10 +12,10 @@ class EditProfileData{
 
     final user= await _appwriteService.account.get();
     final userId = user.$id;
-    final result = await _appwriteService.tables.listRows(databaseId: "68c666740018d3cc0eeb", tableId: "user",queries: [Query.equal("userId", userId)]);
+    final result = await _appwriteService.tables.listRows(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableUser,queries: [Query.equal("userId", userId)]);
     if (result.rows.isNotEmpty) {
       final rowId = result.rows.first.$id;
-       await _appwriteService.tables.updateRow(databaseId: "68c666740018d3cc0eeb", tableId: "user", rowId: rowId,data: {fieldName:value});
+       await _appwriteService.tables.updateRow(databaseId: MKeys.databaseIdUser, tableId: MKeys.tableUser, rowId: rowId,data: {fieldName:value});
     }
 
   }

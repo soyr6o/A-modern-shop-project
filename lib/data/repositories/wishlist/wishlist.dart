@@ -3,6 +3,7 @@ import 'package:appwrite2/appwrite.dart';
 import 'package:appwrite2/data/repositories/product/model_product.dart';
 import 'package:appwrite2/data/repositories/product/product_service.dart';
 import 'package:get/get.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 import 'package:get/get_core/src/get_main.dart' show Get;
 
 class WishListData{
@@ -10,7 +11,7 @@ class WishListData{
 
   final appwrite = Get.find<AppwriteService>();
 
-  final databaseId = "68c666740018d3cc0eeb";
+  final databaseId = MKeys.databaseIdUser;
   final tableId = "ecommercedb";
   Future<bool> toggleWishlist(String productId, bool newValue) async {
     try {

@@ -4,13 +4,14 @@ import 'package:appwrite2/appwrite.dart';
 import 'package:appwrite2/data/repositories/product/model_product.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:appwrite2/utils/constants/keys.dart';
 
 class ProductSearch {
 
   final appwrite = Get.find<AppwriteService>();
 
-  final String databaseId = '68af28ac0026a60aa9db';
-  final String collectionId = 'products';
+  final String databaseId = MKeys.databaseIdProducts;
+  final String collectionId = MKeys.tableProducts;
 
 
 
@@ -53,6 +54,6 @@ class ProductSearch {
   }
 
   Future<void> addCard(ProductsData productItem)async{
-    await appwrite.tables.createRow(databaseId: databaseId, tableId: "cart_items", rowId: ID.unique(), data: productItem.toMap());
+    await appwrite.tables.createRow(databaseId: databaseId, tableId: MKeys.tableCartItems, rowId: ID.unique(), data: productItem.toMap());
   }
 }

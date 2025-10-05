@@ -10,8 +10,8 @@ class AppwriteService extends GetxService {
 
   Future<AppwriteService> init() async {
     client = Client()
-        .setEndpoint("https://fra.cloud.appwrite.io/v1")
-        .setProject("68ad367b00104ab260d9");
+        .setEndpoint("endpoint")
+        .setProject("IdProject");
 
     account = Account(client);
     storage = Storage(client);
